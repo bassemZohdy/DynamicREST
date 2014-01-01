@@ -26,8 +26,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class GenericController {
 
 	@Autowired
@@ -41,7 +42,7 @@ public class GenericController {
 	}
 
 	@RequestMapping(value = "/{resourceName}/{id}", method = RequestMethod.DELETE)
-	@ResponseStatus(value = HttpStatus.OK)
+	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable String id,
 			@PathVariable String resourceName) throws NotFoundException {
 		resourceService.delete(resourceName, id);
@@ -49,7 +50,6 @@ public class GenericController {
 
 	@ExceptionHandler(NotFoundException.class)
 	@ResponseStatus(value = HttpStatus.NOT_FOUND)
-	@ResponseBody
 	public Error error(NotFoundException e) {
 		Error error = new Error();
 		error.setErrorCode(e.getErrorCode());
@@ -59,21 +59,19 @@ public class GenericController {
 	}
 
 	@RequestMapping(value = "/{resourceName}", method = RequestMethod.GET)
-	@ResponseBody
 	public List<Map<String, String>> get(@PathVariable String resourceName)
 			throws NotFoundException {
 		return resourceService.getResourceData(resourceName);
 	}
 
 	@RequestMapping(value = "/{resourceName}/{id}", method = RequestMethod.GET)
-	@ResponseBody
 	public Map<String, String> get(@PathVariable String resourceName,
 			@PathVariable Long id) throws NotFoundException {
 		return resourceService.getResourceData(resourceName, id);
 	}
 
 	@RequestMapping(value = "/{resourceName}/{id}", method = RequestMethod.PUT)
-	@ResponseStatus(value = HttpStatus.OK)
+	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	public void update(@PathVariable Long id,
 			@PathVariable String resourceName,
 			@RequestBody Map<String, String> map) throws NotFoundException {

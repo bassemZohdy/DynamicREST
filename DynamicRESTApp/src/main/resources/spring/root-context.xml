@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Copyright (c) 2013 Bassem Reda Zohdy bassem.zohdy@gmail.com.
-  All rights reserved. This program and the accompanying materials
-  are made available under the terms of the GNU Public License v3.0
-  which accompanies this distribution, and is available at
-  http://www.gnu.org/licenses/gpl.html
-  
-  Contributors:
-      Bassem Reda Zohdy bassem.zohdy@gmail.com - initial API and implementation
--->
+<!-- Copyright (c) 2013 Bassem Reda Zohdy bassem.zohdy@gmail.com. All rights 
+	reserved. This program and the accompanying materials are made available 
+	under the terms of the GNU Public License v3.0 which accompanies this distribution, 
+	and is available at http://www.gnu.org/licenses/gpl.html Contributors: Bassem 
+	Reda Zohdy bassem.zohdy@gmail.com - initial API and implementation -->
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:c="http://www.springframework.org/schema/c" xmlns:context="http://www.springframework.org/schema/context"
@@ -28,14 +23,14 @@
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 
-	<cloud:data-source id="dataSource" />
+	<!-- <cloud:data-source id="dataSource" /> -->
 
-	<jdbc:initialize-database data-source="dataSource">
+	<!-- <jdbc:initialize-database data-source="dataSource"> <jdbc:script location="classpath:/sql/schema.sql" 
+		/> </jdbc:initialize-database> -->
+	<jdbc:embedded-database type="H2" id="dataSource">
 		<jdbc:script location="classpath:/sql/schema.sql" />
-	</jdbc:initialize-database>
-
-	<!-- <jdbc:embedded-database type="H2" id="dataSource"> <jdbc:script location="classpath:/sql/schema.sql" 
-		/> <jdbc:script location="classpath:/sql/testData.sql" /> </jdbc:embedded-database> -->
+		<jdbc:script location="classpath:/sql/testData.sql" />
+	</jdbc:embedded-database>
 
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"

@@ -11,8 +11,8 @@ INSERT INTO `Field` (`id`,`name`,`type`,`resourceId`,`fieldId`) VALUES (4,'numbe
 INSERT INTO `Field` (`id`,`name`,`type`,`resourceId`,`fieldId`) VALUES (5,'birthDate','Date',1,5);
 INSERT INTO `Field` (`id`,`name`,`type`,`resourceId`,`fieldId`) VALUES (6,'name','String',2,1);
 INSERT INTO `Field` (`id`,`name`,`type`,`resourceId`,`fieldId`) VALUES (7,'model','String',2,2);
-INSERT INTO `ResourceData` (`id`,`dataId`,`resourceId`) VALUES (1,1,1);
-INSERT INTO `ResourceData` (`id`,`dataId`,`resourceId`) VALUES (2,1,2);
+INSERT INTO `ResourceData` (`id`,`dataId`,`resourceId`,createTimeStamp,modifyTimeStamp) VALUES (1,1,1,{ts '2014-01-01 00:00:00'},{ts '2014-01-01 00:00:00'});
+INSERT INTO `ResourceData` (`id`,`dataId`,`resourceId`,createTimeStamp,modifyTimeStamp) VALUES (2,1,2,{ts '2014-01-01 00:00:00'},{ts '2014-01-01 00:00:00'});
 INSERT INTO `FieldData` (`id`,`fieldId`,`resourceDataId`,`value`) VALUES (1,1,1,'firstName');
 INSERT INTO `FieldData` (`id`,`fieldId`,`resourceDataId`,`value`) VALUES (2,2,1,'lastName');
 INSERT INTO `FieldData` (`id`,`fieldId`,`resourceDataId`,`value`) VALUES (3,3,1,'email');
