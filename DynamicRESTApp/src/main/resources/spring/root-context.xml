@@ -23,14 +23,14 @@
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 
-	<cloud:data-source id="dataSource" />
-	<cloud:mongo-db-factory id="mongoFactory" />
+<!-- 	<cloud:data-source id="dataSource" /> -->
+<!-- 	<cloud:mongo-db-factory id="mongoFactory" /> -->
 
-	<jdbc:initialize-database data-source="dataSource">
-		<jdbc:script location="classpath:/sql/schema.sql" />
-	</jdbc:initialize-database>
+<!-- 	<jdbc:initialize-database data-source="dataSource"> -->
+<!-- 		<jdbc:script location="classpath:/sql/schema.sql" /> -->
+<!-- 	</jdbc:initialize-database> -->
 
-	<jdbc:embedded-database type="H2" id="embeddedDataSource">
+	<jdbc:embedded-database type="H2" id="dataSource">
 		<jdbc:script location="classpath:/sql/schema.sql" />
 		<jdbc:script location="classpath:/sql/testData.sql" />
 	</jdbc:embedded-database>

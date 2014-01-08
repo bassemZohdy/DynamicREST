@@ -107,24 +107,17 @@ public class ResourceService {
 	}
 
 	@Transactional(rollbackFor = { NotValidException.class })
-	public void createResource(Resource r) throws NotValidException {
+	public int createResource(Resource r) throws NotValidException {
 		if (!StringUtils.hasText(r.getName())) {
 			throw new EmptyResourceNameException(r.getName());
 		}
 		if (resourceRepo.isResourceNameExist(r.getName())) {
 			throw new AlreadyExistResourceNameException(r.getName());
 		}
-		r.setId((long) (resourceRepo.max() + 1));
+		int id = resourceRepo.max() + 1;
+		r.setId((long) id);
 		resourceRepo.add(r);
-		/*
-		 * for (Field f : r.getFields()) { if (!StringUtils.hasText(f.getName())
-		 * || f.getName().equalsIgnoreCase("id")) throw new
-		 * NotValidFieldNameException(f.getName()); if
-		 * (fieldRepo.isFieldNameExist(id, f.getName())) throw new
-		 * NotValidFieldNameException(f.getName()); f.setId((long)
-		 * (fieldRepo.max() + 1)); f.setFieldId((long) (fieldRepo.max(id) + 1));
-		 * f.setResourceId(id); fieldRepo.add(f); }
-		 */
+		return id;
 	}
 
 	@Transactional(rollbackFor = NotFoundException.class)
